@@ -38,9 +38,6 @@
             },
 
             link: function(scope, element) {
-
-                console.log(scope.params);
-
                 var uuid = scope.swiper_uuid;
                 var containerElement = element[0];
                 var paginatorId = "paginator-" + uuid;
@@ -106,7 +103,6 @@
                 // Update on settings has been changed (object link detection)
                 scope.$watch('overrideParameters', function() {
                     scope.params = applyParams();
-                    console.log('swiper params changed', scope.params);
                     if (scope.swiper && scope.swiper.slides) {
                         destroySwiper();
                     }
@@ -114,14 +110,16 @@
                 });
             },
 
-            template: '<div class="swiper-container {{params.containerCls}}">' +
-                '<div class="parallax-bg" data-swiper-parallax="{{params.parallaxTransition}}" ng-show="parallax"></div>' +
-                '<div class="swiper-wrapper {{params.wrapperCls}}" ng-transclude></div>' +
+            template:
+                '<div class="swiper-container {{params.containerCls}}">' +
+                    '<div class="parallax-bg" data-swiper-parallax="{{params.parallaxTransition}}" ng-show="parallax"></div>' +
+                    '<div class="swiper-wrapper {{params.wrapperCls}}" ng-transclude></div>' +
+                    '<div class="swiper-scrollbar" ng-show="params.showScrollBar"></div>' +
+                '</div>' +
                 '<div class="swiper-pagination {{params.paginationCls}}"></div>' +
                 '<div class="swiper-button-next" ng-show="params.showNavButtons"></div>' +
                 '<div class="swiper-button-prev" ng-show="params.showNavButtons"></div>' +
-                '<div class="swiper-scrollbar" ng-show="params.showScrollBar"></div>' +
-                '</div>'
+                ''
         };
     }
 
